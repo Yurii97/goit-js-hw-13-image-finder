@@ -1,6 +1,7 @@
 
 import { showLoader, hideLoader } from './loader'
 import { getImg } from './apiService';
+import createTemplate from './markup'
 
 export default function onSearch(e) {
     e.preventDefault();
@@ -8,7 +9,7 @@ export default function onSearch(e) {
         showLoader();
         const searchQuery = e.target.value;
         console.log("searchQuery:", searchQuery);
-        getImg(searchQuery).then(console.log);
-        hideLoader();
+        getImg(searchQuery).then(createTemplate);
+        // hideLoader();
     }    
 }
