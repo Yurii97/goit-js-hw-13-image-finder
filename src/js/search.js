@@ -1,15 +1,43 @@
-
+import ImgApiService from './apiService';
 import { showLoader, hideLoader } from './loader'
-import { getImg } from './apiService';
+// import { imgApiService } from './imgAPI'
 import createTemplate from './markup'
 
-export default function onSearch(e) {
+const imgApiService = new ImgApiService();
+
+function onSearch(e) {
     e.preventDefault();
+    imgApiService.query = e.target.value;
     if (e.target.value) {
         showLoader();
-        const searchQuery = e.target.value;
-        console.log("searchQuery:", searchQuery);
-        getImg(searchQuery).then(createTemplate);
-        // hideLoader();
+        
+        imgApiService.fetchArticles().then(createTemplate);
+        
+        hideLoader();
     }    
 }
+
+function uploadImg() {        
+    imgApiService.fetchArticles().then(createTemplate);
+}
+        
+export default onSearch; uploadImg;
+
+// CLASS
+
+// class Search{
+//     constructor() {
+        
+//     }
+//     onSearch2() {
+        
+//     }
+//     render2() {
+//         render()
+//     }
+// }
+
+
+// function render() {
+//     imgApiService.fetchArticles().then(createTemplate);
+// }
