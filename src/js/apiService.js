@@ -1,5 +1,3 @@
-
-
 export default class ImgApiService {
     constructor() {
         this.searchQuery = '';
@@ -7,16 +5,22 @@ export default class ImgApiService {
     }
     fetchArticles(){
         const KEY = 'key=24124599-81915d8fff3f3b2b5bfb5c22e';
-        const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&${KEY}&q=${this.searchQuery}&page=${this.pageNun}&per_page=12`;
+        const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&${KEY}&q=${this.searchQuery}&page=${this.pageNum}&per_page=5`;
         
         return fetch(url)
             .then(response => {
-                if (response.ok) {
-                    this.pageNum += 1;
+                if (response.ok) {                    
+                    this.incrementPage();                    
                     return response.json()
                 };
                 throw new Error('Eroor fetching data');
             });
+    }
+    incrementPage() {
+        this.pageNum += 1;
+    }
+    resetPage() {
+        this.pageNum = 1;
     }
     get query() {
         return this.searchQuery;
@@ -24,22 +28,4 @@ export default class ImgApiService {
     set query (newQuery){
         this.searchQuery = newQuery;
     }
-    get page() {
-        return this.pageNun;
-    }
-    set page(newPage) {
-        this.pageNun = newPage;
-    }
 }
-
-
-
-// export const getImg = (searchQuery, pageNun) => {
-//     const KEY = 'key=24124599-81915d8fff3f3b2b5bfb5c22e';
-//     const url = `https://pixabay.com/api/?${KEY}&q=${searchQuery}&page=${pageNun}&per_page=12`;
-//     return fetch(url)
-//         .then(response => {
-//             if (response.ok) return response.json();
-//             throw new Error('Eroor fetching data');
-//         });
-// }

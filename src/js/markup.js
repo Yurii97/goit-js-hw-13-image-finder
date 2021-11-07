@@ -5,7 +5,7 @@ const resultTemplate = document.querySelector('.gallery')
 
 function createTemplate(arrey) {
     showLoader();
-    console.log(arrey.hits[0]);
+    console.log(arrey.hits);
     if (arrey.hits.length>=1) {
         resultTemplate.insertAdjacentHTML('beforeend', template(arrey.hits));
         hideLoader();

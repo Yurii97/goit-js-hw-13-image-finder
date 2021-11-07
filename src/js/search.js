@@ -1,43 +1,26 @@
 import ImgApiService from './apiService';
-import { showLoader, hideLoader } from './loader'
-// import { imgApiService } from './imgAPI'
+import { showLoader, hideLoader, isLoading} from './loader'
 import createTemplate from './markup'
 
+const anchor = document.querySelector('#anchor');
 const imgApiService = new ImgApiService();
 
-function onSearch(e) {
+export default function onSearch(e) {
     e.preventDefault();
     imgApiService.query = e.target.value;
+    imgApiService.resetPage();
     if (e.target.value) {
-        showLoader();
-        
-        imgApiService.fetchArticles().then(createTemplate);
-        
-        hideLoader();
+        const loadImg = ([entrie]) => {
+            if (isLoading) return;
+            if (entrie.isIntersecting) {
+                showLoader();        
+                imgApiService.fetchArticles().then(createTemplate);        
+            }
+        }  
+        const observer = new IntersectionObserver(loadImg, {
+            threshold: 0.5
+        });
+        observer.observe(anchor);
     }    
+    hideLoader();
 }
-
-function uploadImg() {        
-    imgApiService.fetchArticles().then(createTemplate);
-}
-        
-export default onSearch; uploadImg;
-
-// CLASS
-
-// class Search{
-//     constructor() {
-        
-//     }
-//     onSearch2() {
-        
-//     }
-//     render2() {
-//         render()
-//     }
-// }
-
-
-// function render() {
-//     imgApiService.fetchArticles().then(createTemplate);
-// }
