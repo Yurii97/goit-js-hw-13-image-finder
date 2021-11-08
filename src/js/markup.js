@@ -1,16 +1,19 @@
 import template from '../templates/template.hbs';
 import { showLoader, hideLoader } from './loader'
 import openModal from './modal'
+import lazyLoad from './lazyLoad.js';
 
 const resultTemplate = document.querySelector('.gallery')
-const imgRef = document.querySelectorAll('.photo-card');
 
 function createTemplate(arrey) {
-    showLoader();
-    console.log(arrey.hits);
+    showLoader();    
     if (arrey.hits.length>=1) {
         resultTemplate.insertAdjacentHTML('beforeend', template(arrey.hits));
+        
+        const images = document.querySelectorAll('img');
+        lazyLoad(images);
         hideLoader();
+        
     } else {
         hideLoader();
         throw new Error('Eroor fetching data');
