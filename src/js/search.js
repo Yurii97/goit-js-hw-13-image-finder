@@ -1,6 +1,7 @@
 import ImgApiService from './apiService';
 import { showLoader, hideLoader, isLoading} from './loader'
 import createTemplate from './markup'
+import { resultTemplate } from './markup'
 
 const anchor = document.querySelector('#anchor');
 const imgApiService = new ImgApiService();
@@ -9,6 +10,7 @@ export default function onSearch(e) {
     e.preventDefault();
     imgApiService.query = e.target.value;
     imgApiService.resetPage();
+resultTemplate.innerHTML=''
     if (e.target.value) {
         const loadImg = ([entrie]) => {
             if (isLoading) return;
