@@ -18,12 +18,12 @@ export default function onSearch(e) {
     resultTemplate.innerHTML = ''
     imgApiService.query = e.target.value;
     imgApiService.resetPage();
+    mesagePnotify.findSucces();
     const loadImg = ([entrie]) => {
         if (isLoading) return;
         if (entrie.isIntersecting) {
             showLoader();
             imgApiService.fetchArticles().then(createTemplate);
-            mesagePnotify.findSucces();
         }
     };
     const observer = new IntersectionObserver(loadImg, {
