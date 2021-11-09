@@ -2,7 +2,7 @@ import { showLoader, hideLoader, isLoading } from './loader'
 
 export default function lazyLoad(targets) {
     const options = {
-        rootMargin: '200px',
+        rootMargin: '100px',
     };
     const onEntry = (entries, observer) => {
         entries.forEach(entry => {
