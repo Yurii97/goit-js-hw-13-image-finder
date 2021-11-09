@@ -9,7 +9,6 @@ export default function lazyLoad(targets) {
             if (isLoading) return;
             if (entry.isIntersecting) {
                 const img = entry.target;
-                // console.log(img);
                 const src = img.dataset.lazy;
                 img.src = src;
                 observer.unobserve(img);

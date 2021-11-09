@@ -19,7 +19,7 @@ function createTemplate(arrey) {
         throw new Error('Eroor fetching data');
     }
 }
-resultTemplate.addEventListener('click', openModal)
+resultTemplate.addEventListener('click', openModal);
 
 export default createTemplate;
 export { resultTemplate };
