@@ -1,7 +1,7 @@
 import template from '../templates/template.hbs';
 import { showLoader, hideLoader } from './loader'
 import openModal from './modal'
-import lazyLoad from './lazyLoad.js';
+import lazyLoad from './lazyLoad';
 
 const resultTemplate = document.querySelector('.gallery')
 
