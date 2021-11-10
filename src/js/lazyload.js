@@ -1,4 +1,3 @@
-import { showLoader, hideLoader, isLoading } from './loader'
 
 export default function lazyLoad(targets) {
     const options = {
@@ -6,7 +5,6 @@ export default function lazyLoad(targets) {
     };
     const onEntry = (entries, observer) => {
         entries.forEach(entry => {
-            if (isLoading) return;
             if (entry.isIntersecting) {
                 const img = entry.target;
                 const src = img.dataset.lazy;
